@@ -1,0 +1,5 @@
+_GMAP_API_KEY = "AIzaS."
+_INPUT_FILE = "/Users/patrickmulrooney/Downloads/endomondoHR/endoHRParsed_no_outliers.json"
+
+def getkeys():
+    return _INPUT_FILE, _GMAP_API_KEY
