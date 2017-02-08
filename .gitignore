@@ -1,2 +1,4 @@
 .ipynb_checkpoints
 user_tracking
+metastore_db
+derby.log
