@@ -83,7 +83,7 @@ yoga
 # gender                    - character varying - "male" or "female"
 # workoutid                 - integer           - Unique ID per workout, links workoutid across tables
 # userid                    - integer           - User identifying ID
-# start_time                - integer           - Unix stamp, first timestamp for each workout. Nedd to subtract 38400 to make accurate.
+# start_time                - integer           - Unix stamp, first timestamp for each workout.
 # start_altitude            - numeric(20,10)    - In meters
 # start_latitude            - numeric(20,10)    - 
 # start_longitude           - numeric(20,10)    - 
