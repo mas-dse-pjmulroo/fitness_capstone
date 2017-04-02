@@ -1,0 +1,194 @@
+####################
+#
+# Workout time series tables
+#
+# time       - integer        - Unix timestamp but not UTC, subtract 38400 to get correct UTC.
+# altitude   - numeric(20,10) - In meters
+# heart_rate - numeric(10,5)  - In BPM
+# latitude   - numeric(20,10) - Latitude
+# longitude  - numeric(20,10) - Longitude
+# speed      - numeric(20,10) - Speed at time point in kph
+# workoutid  - integer        - By workout ID, links to XX_by_workout workoutid
+# id         - integer        - Arbitrary ID added to data
+# timef      - integer        - time Field - 38400 to deal with improper encoding
+#
+####################
+
+aerobics
+american_football
+badminton
+baseball
+basketball
+beach_volleyball
+bike
+bike_transport
+boxing
+circuit_training
+climbing
+core_stability_training
+cricket
+cross_country_skiing
+dancing
+downhill_skiing
+elliptical
+fencing
+fitness_walking
+golf
+gymnastics
+handball
+hiking
+hockey
+horseback_riding
+indoor_cycling
+kayaking
+kite_surfing
+martial_arts
+mountain_bike
+orienteering
+pilates
+polo
+roller_skiing
+rowing
+rugby
+run
+sailing
+scuba_diving
+skate
+skateboarding
+snowboarding
+snowshoeing
+soccer
+squash
+stair_climing
+step_counter
+surfing
+swimming
+table_tennis
+tennis
+treadmill_running
+treadmill_walking
+volleyball
+walk
+walk_transport
+weight_lifting
+weight_training
+wheelchair
+windsurfing
+yoga
+
+####################
+#
+# Workout time series tables
+#
+# gender                    - character varying - "male" or "female"
+# workoutid                 - integer           - Unique ID per workout, links workoutid across tables
+# userid                    - integer           - User identifying ID
+# start_time                - integer           - Unix stamp, first timestamp for each workout. Nedd to subtract 38400 to make accurate.
+# start_altitude            - numeric(20,10)    - In meters
+# start_latitude            - numeric(20,10)    - 
+# start_longitude           - numeric(20,10)    - 
+# series_length             - integer           - Count of corresponding timestamps
+# series_time_delta         - integer[]         - Delta between timestamps
+# series_time_delta_average - numeric(20,10)    - Average delta of timestamps
+# timezone                  - character varying - Derived timezone
+# id                        - integer           - Arbitrary ID
+# altitude_max              - numeric(20,10)    - 
+# altitude_min              - numeric(20,10)    - 
+# calories                  - numeric(20,10)    - 
+# distance                  - numeric(20,10)    - Reported by app
+# duration                  - numeric(20,10)    - Reported by app
+# heart_rate_avg            - numeric(20,10)    - Derived from time series
+# heart_rate_max            - numeric(20,10)    - Derived from time series
+# hydration                 - numeric(20,10)    - Reported by app. Calculated using weather information and other factors
+# speed_avg                 - numeric(20,10)    - Derived from time series, kph
+# speed_max                 - numeric(20,10)    - Derived from time series, kph
+# humidity                  - integer           - Reported by app, percent
+# temperature               - integer           - Reported by app, celsius
+# wind_speed                - integer           - Reported by app, kph
+#
+####################
+
+aerobics_by_workout
+american_football_by_workout
+badminton_by_workout
+baseball_by_workout
+basketball_by_workout
+beach_volleyball_by_workout
+bike_by_workout
+bike_transport_by_workout
+boxing_by_workout
+circuit_training_by_workout
+climbing_by_workout
+core_stability_training_by_workout
+cricket_by_workout
+cross_country_skiing_by_workout
+dancing_by_workout
+downhill_skiing_by_workout
+elliptical_by_workout
+fencing_by_workout
+fitness_walking_by_workout
+golf_by_workout
+gymnastics_by_workout
+handball_by_workout
+hiking_by_workout
+hockey_by_workout
+horseback_riding_by_workout
+indoor_cycling_by_workout
+kayaking_by_workout
+kite_surfing_by_workout
+martial_arts_by_workout
+mountain_bike_by_workout
+orienteering_by_workout
+pilates_by_workout
+polo_by_workout
+roller_skiing_by_workout
+rowing_by_workout
+rugby_by_workout
+run_by_workout
+sailing_by_workout
+scuba_diving_by_workout
+skate_by_workout
+skateboarding_by_workout
+snowboarding_by_workout
+snowshoeing_by_workout
+soccer_by_workout
+squash_by_workout
+stair_climing_by_workout
+step_counter_by_workout
+surfing_by_workout
+swimming_by_workout
+table_tennis_by_workout
+tennis_by_workout
+treadmill_running_by_workout
+treadmill_walking_by_workout
+volleyball_by_workout
+walk_by_workout
+walk_transport_by_workout
+weight_lifting_by_workout
+weight_training_by_workout
+wheelchair_by_workout
+windsurfing_by_workout
+yoga_by_workout
+
+
+
+aerobics_masa
+run_sub_with_hr
+run_sub_with_hr_users
+run_with_hr_spd
+
+####################
+#
+# Derived / summary tables
+#
+# id                      - integer        - Arbitrary ID
+# userid                  - integer        - Unique user identifier
+# volleyball              - integer        - Count for user X of entries in volleyball_by_workout
+# ...
+# soccer                  - integer        - Count for user X of entries in soccer_by_workout
+# average_altitude        - numeric(20,10) - Average altitude of workouts
+#
+####################
+
+user_workout_counts
+
