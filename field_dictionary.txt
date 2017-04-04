@@ -2,15 +2,13 @@
 #
 # Workout time series tables
 #
-# time       - integer        - Unix timestamp but not UTC, subtract 38400 to get correct UTC.
+# time       - integer        - UTC Unix timestamp
 # altitude   - numeric(20,10) - In meters
 # heart_rate - numeric(10,5)  - In BPM
 # latitude   - numeric(20,10) - Latitude
 # longitude  - numeric(20,10) - Longitude
 # speed      - numeric(20,10) - Speed at time point in kph
 # workoutid  - integer        - By workout ID, links to XX_by_workout workoutid
-# id         - integer        - Arbitrary ID added to data
-# timef      - integer        - time Field - 38400 to deal with improper encoding
 #
 ####################
 
