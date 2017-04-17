@@ -23,10 +23,10 @@ workout_tables = ["aerobics_by_workout", "american_football_by_workout", "badmin
 for _table in series_tables:
     print _table
     # For cleanup / testing
-    query = "ALTER TABLE {} DROP COLUMN if exists speed_first;".format(_table)
+    query = "ALTER TABLE {} DROP COLUMN if exists speed_ma_100;".format(_table)
     cur.execute(query)
 
-    query = "ALTER TABLE {} ADD COLUMN speed_first numeric(10,5);".format(_table)
+    query = "ALTER TABLE {} ADD COLUMN speed_ma_100 numeric(8,5);".format(_table)
     cur.execute(query)
     conn.commit()
 
@@ -47,25 +47,26 @@ for _table in sorted(series_tables):
         if count % 1000 == 0:
             print count
 
-        query = "select alt_difference, time_difference, time from (select speed - lag(speed) over (order by time) as alt_difference, time - lag(time) over (order by time) as time_difference, time from {} where workoutid = {} order by time) as foo;".format(_table, _workout)
+        query = "select time, avg(speed) over (order by time rows between 100 preceding and current row) as mavg from {} where workoutid = {} order by time;".format(_table, _workout)
         cur.execute(query)
         
         for _j in cur.fetchall():
-            if _j[0] == None:
+            if _j[1] == None:
                 continue
-            _time = _j[1]
-            if _j[1] == 0:
-                _time = 1
-            
+            _time = _j[0]
 
-            _tmp = round(_j[0] / _time, 5)
+            if _time == 0:
+                _time = 1
+
+            _tmp = round(_j[1] / _time, 5)
             
-            if _tmp >= 100000:
-                _tmp = 99998
-            if _tmp <= -100000:
-                _tmp = -99998
+            if _tmp >= 999:
+                _tmp = 999
+            if _tmp <= -999:
+                _tmp = -998
+
             try: 
-                query = "update {} set speed_first = {} where workoutid = {} and time = {};".format(_table, _tmp, _workout, _j[2])
+                query = "update {} set speed_ma_100 = {} where workoutid = {} and time = {};".format(_table, _tmp, _workout, _j[0])
                 cur.execute(query)
             except:
                 print query

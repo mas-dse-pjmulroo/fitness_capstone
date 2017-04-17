@@ -10,6 +10,18 @@
 # speed      - numeric(20,10) - Speed at time point in kph
 # workoutid  - integer        - By workout ID, links to XX_by_workout workoutid
 #
+# New Fields:
+# 
+# altitude_second  - numeric(10,5)  - First derivative of altitude. First entry by workout blank 
+# altitude_first   - numeric(10,5)  - Second derivative of altitude. First and second by workout blank
+# speed_first      - numeric(10,5)  - First derivative of speed.
+# geo_distance     - numeric(20,10) - Euclidean distance (sqrt((X2-X1)^2 + (Y2 - Y1)^2)) between points. First entry by workout blank
+# elapsed_time     - integer        - Time since start of workout.
+# elapsed_distance - numeric(15,10) - Distance since start of workout. Equal to: (row_number - 1) * (distance / series length )
+# speed_ma_50      - numeric(8,5)   - Moving average of 50 preceeding speed data points.
+# speed_ma_100     - numeric(8,5)   - Moving average of 100 preceeding speed data points.
+# heart_rate_ma_25 - numeric(8,5)   - Moving average of 25 preceeding heart_rate data points.
+#
 ####################
 
 aerobics
