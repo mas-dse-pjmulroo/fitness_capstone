@@ -9,8 +9,6 @@ cur = conn.cursor()
 
 
 workout_tables = ["aerobics_by_workout", "american_football_by_workout", "badminton_by_workout", "baseball_by_workout", "basketball_by_workout", "beach_volleyball_by_workout", "bike_by_workout", "bike_transport_by_workout", "boxing_by_workout", "circuit_training_by_workout", "climbing_by_workout", "core_stability_training_by_workout", "cricket_by_workout", "cross_country_skiing_by_workout", "dancing_by_workout", "downhill_skiing_by_workout", "elliptical_by_workout", "fencing_by_workout", "fitness_walking_by_workout", "golf_by_workout", "gymnastics_by_workout", "handball_by_workout", "hiking_by_workout", "hockey_by_workout", "horseback_riding_by_workout", "indoor_cycling_by_workout", "kayaking_by_workout", "kite_surfing_by_workout", "martial_arts_by_workout", "mountain_bike_by_workout", "orienteering_by_workout", "pilates_by_workout", "polo_by_workout", "roller_skiing_by_workout", "rowing_by_workout", "rugby_by_workout", "run_by_workout", "sailing_by_workout", "scuba_diving_by_workout", "skate_by_workout", "skateboarding_by_workout", "snowboarding_by_workout", "snowshoeing_by_workout", "soccer_by_workout", "squash_by_workout", "stair_climing_by_workout", "step_counter_by_workout", "surfing_by_workout", "swimming_by_workout", "table_tennis_by_workout", "tennis_by_workout", "treadmill_running_by_workout", "treadmill_walking_by_workout", "volleyball_by_workout", "walk_by_workout", "walk_transport_by_workout", "weight_lifting_by_workout", "weight_training_by_workout", "wheelchair_by_workout", "windsurfing_by_workout", "yoga_by_workout" ]
-# Sample tables..
-#workout_tables = ['bike_by_workout', 'run_by_workout']
 
 
 for _table in workout_tables:
@@ -23,11 +21,13 @@ for _table in workout_tables:
     cur.execute(query)
     conn.commit()
 
+workout_tables = ['bike_by_workout', 'run_by_workout']  
+
 count = 0
 for _table in sorted(workout_tables):
     print _table
     
-    query = "select userid from {}".format(_table)
+    query = "select distinct(userid) from {}".format(_table)
     cur.execute(query)
     
     userIds = [_i[0] for _i in cur.fetchall()]
@@ -44,6 +44,9 @@ for _table in sorted(workout_tables):
         cur.execute(query)
         
         for _j in cur.fetchall():
+
+            if _j[1] == None:
+                continue
                 
             query = "update {} set elapsed_time = {} where workoutid = {};".format(_table, _j[1], _j[0])
 

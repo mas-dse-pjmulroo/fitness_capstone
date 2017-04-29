@@ -53,20 +53,9 @@ for _table in sorted(series_tables):
         for _j in cur.fetchall():
             if _j[1] == None:
                 continue
-            _time = _j[0]
-
-            if _time == 0:
-                _time = 1
-
-            _tmp = round(_j[1] / _time, 5)
-            
-            if _tmp >= 999:
-                _tmp = 999
-            if _tmp <= -999:
-                _tmp = -998
 
             try: 
-                query = "update {} set speed_ma_50 = {} where workoutid = {} and time = {};".format(_table, _tmp, _workout, _j[0])
+                query = "update {} set speed_ma_50 = {} where workoutid = {} and time = {};".format(_table, _j[1], _workout, _j[0])
                 cur.execute(query)
             except:
                 print query

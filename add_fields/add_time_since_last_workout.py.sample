@@ -27,7 +27,7 @@ count = 0
 for _table in sorted(workout_tables):
     print _table
     
-    query = "select userid from {}".format(_table)
+    query = "select distinct(userid) from {}".format(_table)
     cur.execute(query)
     
     userIds = [_i[0] for _i in cur.fetchall()]

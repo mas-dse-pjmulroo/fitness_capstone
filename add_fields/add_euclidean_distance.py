@@ -8,13 +8,9 @@ conn = psycopg2.connect("dbname=%s user=pmulrooney"%dbname)
 cur = conn.cursor()
 
 series_tables = ["aerobics", "american_football", "badminton", "baseball", "basketball", "beach_volleyball", "bike", "bike_transport", "boxing", "circuit_training", "climbing", "core_stability_training", "cricket", "cross_country_skiing", "dancing", "downhill_skiing", "elliptical", "fencing", "fitness_walking", "golf", "gymnastics", "handball", "hiking", "hockey", "horseback_riding", "indoor_cycling", "kayaking", "kite_surfing", "martial_arts", "mountain_bike", "orienteering", "pilates", "polo", "roller_skiing", "rowing", "rugby", "run", "sailing", "scuba_diving", "skate", "skateboarding", "snowboarding", "snowshoeing", "soccer", "squash", "stair_climing", "step_counter", "surfing", "swimming", "table_tennis", "tennis", "treadmill_running", "treadmill_walking", "volleyball", "walk", "walk_transport", "weight_lifting", "weight_training", "wheelchair", "windsurfing", "yoga"]
-# Sample tables..
-#series_tables = ['bike', 'run']
 
 
 workout_tables = ["aerobics_by_workout", "american_football_by_workout", "badminton_by_workout", "baseball_by_workout", "basketball_by_workout", "beach_volleyball_by_workout", "bike_by_workout", "bike_transport_by_workout", "boxing_by_workout", "circuit_training_by_workout", "climbing_by_workout", "core_stability_training_by_workout", "cricket_by_workout", "cross_country_skiing_by_workout", "dancing_by_workout", "downhill_skiing_by_workout", "elliptical_by_workout", "fencing_by_workout", "fitness_walking_by_workout", "golf_by_workout", "gymnastics_by_workout", "handball_by_workout", "hiking_by_workout", "hockey_by_workout", "horseback_riding_by_workout", "indoor_cycling_by_workout", "kayaking_by_workout", "kite_surfing_by_workout", "martial_arts_by_workout", "mountain_bike_by_workout", "orienteering_by_workout", "pilates_by_workout", "polo_by_workout", "roller_skiing_by_workout", "rowing_by_workout", "rugby_by_workout", "run_by_workout", "sailing_by_workout", "scuba_diving_by_workout", "skate_by_workout", "skateboarding_by_workout", "snowboarding_by_workout", "snowshoeing_by_workout", "soccer_by_workout", "squash_by_workout", "stair_climing_by_workout", "step_counter_by_workout", "surfing_by_workout", "swimming_by_workout", "table_tennis_by_workout", "tennis_by_workout", "treadmill_running_by_workout", "treadmill_walking_by_workout", "volleyball_by_workout", "walk_by_workout", "walk_transport_by_workout", "weight_lifting_by_workout", "weight_training_by_workout", "wheelchair_by_workout", "windsurfing_by_workout", "yoga_by_workout" ]
-# Sample tables..
-#workout_tables = ['bike_by_workout', 'run_by_workout']
 
 
 for _table in workout_tables:
@@ -27,6 +23,8 @@ for _table in workout_tables:
     cur.execute(query)
     conn.commit()
 
+workout_tables = ['bike_by_workout', 'run_by_workout']
+series_tables = ['bike', 'run']
 
 count = 0
 for _table in sorted(series_tables):
@@ -41,12 +39,25 @@ for _table in sorted(series_tables):
     print ""
     
     for _workout in _tmp:
-
         _workoutid = _workout[0]
         _elapsed = _workout[1]
         count += 1
 
-        query = "update {}_by_workout set geo_distance = {} where workoutid = {};".format(_table, _elapsed, _workoutid)
+        if _elapsed == None:
+            continue
 
-        cur.execute(query)
-        conn.commit()
+        if _elapsed >= 100000:
+            _elapsed = 99999
+
+        try:
+            query = "update {}_by_workout set geo_distance = {} where workoutid = {};".format(_table, _elapsed, _workoutid)
+
+            cur.execute(query)
+        except:
+            print query
+            break
+        if count % 1000 == 0:
+            conn.commit()
+            print count
+
+conn.commit()

@@ -1,7 +1,7 @@
 import psycopg2
 
-dbname = "endomondo"
-#dbname = "endomondo_sample"
+#dbname = "endomondo"
+dbname = "endomondo_sample"
 conn = psycopg2.connect("dbname=%s user=pmulrooney"%dbname)
 
 # Open a cursor to perform database operations
@@ -46,7 +46,21 @@ for _table in sorted(series_tables):
         _elapsed = _workout[1]
         count += 1
 
-        query = "update {}_by_workout set geo_distance = {} where workoutid = {};".format(_table, _elapsed, _workoutid)
+        if _elapsed == None:
+            continue
+ 
+        if _elapsed >= 100000:
+            _elapsed = 99999
 
-        cur.execute(query)
-        conn.commit()
+        try:
+            query = "update {}_by_workout set geo_distance = {} where workoutid = {};".format(_table, _elapsed, _workoutid)
+
+            cur.execute(query)
+        except:
+            print query
+            break
+        if count % 1000 == 0:
+            conn.commit()
+            print count
+
+conn.commit()
