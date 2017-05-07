@@ -2,7 +2,7 @@
 --# Run
 --##################################################################
 --# REMOVE DUPES.
-select workoutid from run group by altitude, heart_rate, latitude, longitude, speed, workoutid, time having count(*) > 1; 
+select count(*) from run group by altitude, heart_rate, latitude, longitude, speed, workoutid, time having count(*) > 1; 
 
 --# Need to remove them.
 ALTER TABLE run ADD COLUMN id SERIAL PRIMARY KEY;
@@ -14,6 +14,9 @@ WHERE id IN (SELECT id
               WHERE t.rnum > 1);
 ALTER TABLE run drop column id;
 --# DELETE 136,868
+
+select count(*) from run group by altitude, heart_rate, latitude, longitude, speed, workoutid, time having count(*) > 1; 
+
 
 --##################################################################
 --##################################################################
@@ -233,6 +236,30 @@ update run r1 set speed_ma_100 = d1.mavg from dev_list as d1 where d1.workoutid 
 select now();
 
 select * from histogram('speed_ma_100', 'run');
+endomondo=# select * from histogram('speed_ma_100', 'run');
+ bucket |        range        |   freq   |       bar
+--------+---------------------+----------+-----------------
+      1 | [0.00000,2.49974]   |   686047 |
+      2 | [2.49975,4.99948]   |   990245 | *
+      3 | [4.99949,7.49923]   |  3381778 | **
+      4 | [7.49924,9.99897]   | 15629177 | ********
+      5 | [9.99898,12.49872]  | 28507860 | ***************
+      6 | [12.49873,14.99846] | 11102980 | ******
+      7 | [14.99847,17.49821] |  1721597 | *
+      8 | [17.49824,19.99795] |   307940 |
+      9 | [19.99796,22.49770] |   161704 |
+     10 | [22.49771,24.99742] |   111873 |
+     11 | [24.99749,27.49717] |    88734 |
+     12 | [27.49720,29.99688] |    81643 |
+     13 | [29.99695,32.49654] |    67191 |
+     14 | [32.49681,34.99640] |    34761 |
+     15 | [34.99649,37.49596] |    14106 |
+     16 | [37.49623,39.99556] |     6413 |
+     17 | [39.99609,42.49466] |     4575 |
+     18 | [42.49733,44.99406] |     5257 |
+     19 | [44.99608,47.47320] |     5164 |
+     20 | [47.49917,49.85640] |      103 |
+     21 | [49.99490,49.99490] |        2 |
 
 --##################################################################
 --##################################################################
