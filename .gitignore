@@ -2,3 +2,7 @@
 user_tracking
 metastore_db
 derby.log
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
