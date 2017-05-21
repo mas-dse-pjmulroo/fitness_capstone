@@ -21,6 +21,7 @@
 # speed_ma_50      - numeric(8,5)   - performance - Moving average of 50 preceeding speed data points.
 # speed_ma_100     - numeric(8,5)   - performance - Moving average of 100 preceeding speed data points.
 # heart_rate_ma_25 - numeric(8,5)   - performance - Moving average of 25 preceeding heart_rate data points.
+# speed_by_geo     - numeric(20,10) - performance - geo_distance / time delta.
 #
 ####################
 
@@ -102,9 +103,9 @@ yoga
 # series_time_delta_average - numeric(20,10)    - Average delta of timestamps
 # timezone                  - character varying - Derived timezone
 # id                        - integer           - Arbitrary ID
-# altitude_max              - numeric(20,10)    - 
-# altitude_min              - numeric(20,10)    - 
-# calories                  - numeric(20,10)    - 
+# altitude_max              - numeric(20,10)    - Reported by app
+# altitude_min              - numeric(20,10)    - Reported by app
+# calories                  - numeric(20,10)    - Reported by app
 # distance                  - numeric(20,10)    - Reported by app
 # duration                  - numeric(20,10)    - Reported by app
 # heart_rate_avg            - numeric(20,10)    - Derived from time series
@@ -115,6 +116,10 @@ yoga
 # humidity                  - integer           - Reported by app, percent
 # temperature               - integer           - Reported by app, celsius
 # wind_speed                - integer           - Reported by app, kph
+# elapsed_time              - integer           - Time since the workout
+# geo_distance              - numeric(15,10)    - Derived from time series, sum of geo_distance field.
+# altitude_max              - numeric(20,10)    - Derived from time series, Maximum altitude, meters
+# altitude_min              - numeric(20,10)    - Derived from time series, Minimum altitude, meters
 #
 ####################
 
