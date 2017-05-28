@@ -22,6 +22,7 @@
 # speed_ma_100     - numeric(8,5)   - performance - Moving average of 100 preceeding speed data points.
 # heart_rate_ma_25 - numeric(8,5)   - performance - Moving average of 25 preceeding heart_rate data points.
 # speed_by_geo     - numeric(20,10) - performance - geo_distance / time delta.
+# altitude2        - numeric(20,10) - route       - median of altitude for all entries at given latitude / longitude, meters
 #
 ####################
 
@@ -95,31 +96,36 @@ yoga
 # workoutid                 - integer           - Unique ID per workout, links workoutid across tables
 # userid                    - integer           - User identifying ID
 # start_time                - integer           - Unix stamp, first timestamp for each workout.
-# start_altitude            - numeric(20,10)    - In meters
+# id                        - integer           - Arbitrary ID
+# altitude_max              - numeric(20,10)    - 
+# altitude_min              - numeric(20,10)    - 
+# calories                  - numeric(20,10)    - 
+# distance                  - numeric(20,10)    - Kilometers
+# duration                  - numeric(20,10)    - Seconds
+# hydration                 - numeric(20,10)    - Calculated using weather information and other factors
+# speed_avg                 - numeric(20,10)    - Kilometers / hour
+# speed_max                 - numeric(20,10)    - Kilometers / hour
+# humidity                  - integer           - Percent
+# temperature               - integer           - Celsius
+# wind_speed                - integer           - Kilometers / hour
+#
+# New Fields:
+#
+# start_altitude            - numeric(20,10)    - Meters
 # start_latitude            - numeric(20,10)    - 
 # start_longitude           - numeric(20,10)    - 
 # series_length             - integer           - Count of corresponding timestamps
 # series_time_delta         - integer[]         - Delta between timestamps
 # series_time_delta_average - numeric(20,10)    - Average delta of timestamps
-# timezone                  - character varying - Derived timezone
-# id                        - integer           - Arbitrary ID
-# altitude_max              - numeric(20,10)    - Reported by app
-# altitude_min              - numeric(20,10)    - Reported by app
-# calories                  - numeric(20,10)    - Reported by app
-# distance                  - numeric(20,10)    - Reported by app
-# duration                  - numeric(20,10)    - Reported by app
-# heart_rate_avg            - numeric(20,10)    - Derived from time series
-# heart_rate_max            - numeric(20,10)    - Derived from time series
-# hydration                 - numeric(20,10)    - Reported by app. Calculated using weather information and other factors
-# speed_avg                 - numeric(20,10)    - Derived from time series, kph
-# speed_max                 - numeric(20,10)    - Derived from time series, kph
-# humidity                  - integer           - Reported by app, percent
-# temperature               - integer           - Reported by app, celsius
-# wind_speed                - integer           - Reported by app, kph
+# timezone                  - character varying - timezone of start point
+# heart_rate_avg            - numeric(20,10)    - Beats per minute
+# heart_rate_max            - numeric(20,10)    - Beats per minute
 # elapsed_time              - integer           - Time since the workout
-# geo_distance              - numeric(15,10)    - Derived from time series, sum of geo_distance field.
-# altitude_max              - numeric(20,10)    - Derived from time series, Maximum altitude, meters
-# altitude_min              - numeric(20,10)    - Derived from time series, Minimum altitude, meters
+# geo_distance              - numeric(15,10)    - Sum of geo_distance field.
+# altitude_max2             - numeric(20,10)    - Maximum altitude, meters
+# altitude_min2             - numeric(20,10)    - Minimum altitude, meters
+# speed_avg2                - numeric(20,10)    - Kilometers / hour
+# speed_max2                - numeric(20,10)    - Kilometers / hour
 #
 ####################
 
