@@ -36,7 +36,8 @@
 # Notes & scripts about the AWS Spark cluster
 
 └── field_dictionary.txt
-# File explaining the fields in the DB, their format, and where they came from```
+# File explaining the fields in the DB, their format, and where they came from
+```
 
 ### Datasource Notes
 
