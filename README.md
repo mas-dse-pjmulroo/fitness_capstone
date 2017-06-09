@@ -90,6 +90,8 @@ The file `field_dictionary.txt` contains information on all the fields in each t
 
 The most recent copy of the database is stored externally of this repo due to it's size. It is labelled `endomondo.20170508.sql.gz` and is approximately 10GB. Uncompressed it takes up approximately 40GB. It can imported into PostgreSQL using `psql` utility.
 
+The file `altitude_lookup.20170605.sql.gz` contains an incomplete mapping of latitude / longitude to altitude (meters) from an external API.
+
 ## Clustering Notes
 
 #### Dependencies:
