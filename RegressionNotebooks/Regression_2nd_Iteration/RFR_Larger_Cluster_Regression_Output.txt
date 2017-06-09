@@ -1,0 +1,15 @@
+(Route, Perf, Model): (0, 0, RandomForestRegressor_4691a702831976ee252c): 5568.40799134
+(Route, Perf, Model): (0, 1, RandomForestRegressor_4691a702831976ee252c): 681.056741435
+(Route, Perf, Model): (0, 3, RandomForestRegressor_4691a702831976ee252c): 658.119447519
+(Route, Perf, Model): (0, 2, RandomForestRegressor_4691a702831976ee252c): 1751.27584133
+(Route, Perf, Model): (0,4,RandomForestRegressor_4691a702831976ee252c) dropped
+(Route, Perf, Model): (1, 0, RandomForestRegressor_4691a702831976ee252c): 8900.58832093
+(Route, Perf, Model): (1, 1, RandomForestRegressor_4691a702831976ee252c): 2873.85860075
+(Route, Perf, Model): (1, 3, RandomForestRegressor_4691a702831976ee252c): 1097.82291059
+(Route, Perf, Model): (1, 2, RandomForestRegressor_4691a702831976ee252c): 2012.75059164
+(Route, Perf, Model): (1, 4, RandomForestRegressor_4691a702831976ee252c): 1518.77272979
+(Route, Perf, Model): (2, 0, RandomForestRegressor_4691a702831976ee252c): 12001.109554
+(Route, Perf, Model): (2, 1, RandomForestRegressor_4691a702831976ee252c): 1282.77157962
+(Route, Perf, Model): (2, 3, RandomForestRegressor_4691a702831976ee252c): 697.044911747
+(Route, Perf, Model): (2, 2, RandomForestRegressor_4691a702831976ee252c): 897.248144104
+(Route, Perf, Model): (2, 4, RandomForestRegressor_4691a702831976ee252c): 735.778675005

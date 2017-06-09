@@ -1,0 +1,2 @@
+max_elapsed_time,sum_geo_distance,workoutid,avg_heart_rate,avg_speed,diff_altitude,userid,prediction,new_avg_speed,new_avg_dist
+699.0,0.002246799,447312069,161.52380952380952,12.298114285714286,4.200000000000003,10028940,5,12.298114285714286,0.002246799

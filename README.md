@@ -5,6 +5,12 @@
 #### Overview
 
 ```
+├── ClusteringNotebooks
+# Notebooks that execute clustering portion of pipeline
+
+│   └── old
+# Early attempts at clustering
+
 ├── DataLoadingNotebooks
 # Notebooks that explain how the data was loaded into PostgreSQL
 
@@ -26,14 +32,23 @@
 ├── HandyUtilities
 # Some utilities we wrote or found that were handy
 
+├── Other
+# Old CSV and notebooks included for completeness
+
 ├── Presentations
 # Copies of progress presentations and reports
 
 ├── ReferenceEndomondoWorkouts
 # Some workouts generated in Endomondo for reference
 
+├── RegressionNotebooks
+# Notebooks that execute regression portion of pipeline
+
 ├── SparkNotes
 # Notes & scripts about the AWS Spark cluster
+
+├── VisualizationNotebooks
+# Notebooks that generate analysis and presentation visualizations
 
 └── field_dictionary.txt
 # File explaining the fields in the DB, their format, and where they came from
@@ -73,6 +88,8 @@ The majority of time series data (~95% of records) is found in the 'bike' and 'r
 
 The file `field_dictionary.txt` contains information on all the fields in each table.
 
+The most recent copy of the database is stored externally of this repo due to it's size. It is labelled `endomondo.20170508.sql.gz` and is approximately 10GB. Uncompressed it takes up approximately 40GB. It can imported into PostgreSQL using `psql` utility.
+
 ## Clustering Notes
 
 #### Dependencies:
@@ -88,6 +105,36 @@ Once the route clusters are established, each of them will be independently clus
 
 #### Dependencies:
 
-*PySpark v2.1.0*, *Python 2.7*
+*PySpark v2.1.0*, *Python 2.7*, *Bokeh*
 
 #### Summary:
+
+The `Regression_5th_Iteration` directory contains the finalized regression training loop within the `Regression with Model Saving.ipynb`. This notebook loads in data from the output of the final clustering notebook, reformats it into a dataframe that can be used in regression with dense vectors of features for inputs and a elapsed_time converted into a label. Parameter maps are built for each of the models for hypertuning in a dictionary. Then, a nested loop goes through each model in the hypertuning dictionary for each combination of route and performance cluster and fits a model. The model is trained with 10 folds cross-validation across the parameter map, and the CrossValidator object chooses the best model automatically. The predictions are fed back into the original dataframe, and another dictionary is created to record various regression metrics. The model is saved to a recorded path for future access (we encountered issues going from a single node to master with slaves configuration that required a HDFS, which we didn't have in place at the time the final models were created). Finally, the resulting dataframes are saved into csvs. Our final training of these models took approximately 18 hours on the full data set with our cluster configuration. This can be reduced by at least half by removing gradient-boosted trees; however, they are the best performing regressors at this point.
+
+The notebook `Regression Results Analysis.ipynb` takes the dataframes created from training the models and creates several new fields for further evaluation of the models, which are saved in a new csv for quick access. There are also some bokeh plots, which were used for publication.
+
+The notebook `Stacking Playground.ipynb` was originally not going to be included; however, stacking did a good job of improving our model overall, so it was included. This follows a similar format to `Regression with Model Saving.ipynb`. The bokeh plot at the end of this notebook can freeze up a notebook due to the extremely large number of datapoints, so you should keep it hidden or delete it and visualize it with another tool.
+
+The notebook `Pat_Prediction.ipynb` employs the models from the cluster that the test data for our poster was labelled in. It creates predictions for the route and applies the stacking regression equation to make the final predictions included in the poster.
+
+# Visualization Notes
+
+#### Dependencies:
+
+*Python 2.7*, *Bokeh*, *Seaborn*, *Matplotlib*
+
+#### Summary:
+
+The visualizations for this project were generated in two notebooks.
+
+The first `Spider Chart Visualization of Cluster Centers` generates the spider charts used in our poster, presentation, and paper. The code was primarily sourced from: https://gist.github.com/kylerbrown/29ce940165b22b8f25f4. It reads the files:
+
+```
+route0_perf2.csv
+route1_perf2.csv
+route2_perf2.csv
+route3_perf2.csv
+route4_perf2.csv
+route_clusters_6_1_2017_1.csv```
+
+The second notebook `Jason-Loading-Visualizing-Endomondo` generates the histograms of the database from queries directly against the database.

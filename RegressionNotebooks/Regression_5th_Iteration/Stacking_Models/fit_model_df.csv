@@ -1,0 +1,5 @@
+,path,mae,r2,rmse
+lr stack,/nfs/Regression_5th_Iteration/Stacking_Models/lr stack2,405.974714756,0.881899548931,594.947601672
+lr stack2,,409.973839845,0.879505969798,600.94635493
+rfr stack,/nfs/Regression_5th_Iteration/Stacking_Models/rfr stack2,438.522861592,0.862990388043,640.808786727
+rfr stack2,,451.966908988,0.85732201874,653.930235223

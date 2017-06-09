@@ -1,0 +1,14 @@
+(Route, Perf, Model): (0, 0, GBTRegressor_4baabdf5a1c275d26622): 5581.87904918
+(Route, Perf, Model): (0, 1, GBTRegressor_4baabdf5a1c275d26622): 626.924763752
+(Route, Perf, Model): (0, 3, GBTRegressor_4baabdf5a1c275d26622): 943.991045649
+(Route, Perf, Model): (0, 2, GBTRegressor_4baabdf5a1c275d26622): 2289.15291671
+(Route, Perf, Model): (0,4,GBTRegressor_4baabdf5a1c275d26622) dropped(Route, Perf, Model): (1, 0, GBTRegressor_4baabdf5a1c275d26622): 8994.31845855
+(Route, Perf, Model): (1, 1, GBTRegressor_4baabdf5a1c275d26622): 2978.95379394
+(Route, Perf, Model): (1, 3, GBTRegressor_4baabdf5a1c275d26622): 942.704865686
+(Route, Perf, Model): (1, 2, GBTRegressor_4baabdf5a1c275d26622): 2029.31048963
+(Route, Perf, Model): (1, 4, GBTRegressor_4baabdf5a1c275d26622): 1191.80337197
+(Route, Perf, Model): (2, 0, GBTRegressor_4baabdf5a1c275d26622): 11929.5594607
+(Route, Perf, Model): (2, 1, GBTRegressor_4baabdf5a1c275d26622): 1289.73488303
+(Route, Perf, Model): (2, 3, GBTRegressor_4baabdf5a1c275d26622): 911.82298312
+(Route, Perf, Model): (2, 2, GBTRegressor_4baabdf5a1c275d26622): 825.292031806
+(Route, Perf, Model): (2, 4, GBTRegressor_4baabdf5a1c275d26622): 365.8610363
