@@ -137,6 +137,7 @@ route1_perf2.csv
 route2_perf2.csv
 route3_perf2.csv
 route4_perf2.csv
-route_clusters_6_1_2017_1.csv```
+route_clusters_6_1_2017_1.csv
+```
 
 The second notebook `Jason-Loading-Visualizing-Endomondo` generates the histograms of the database from queries directly against the database.
